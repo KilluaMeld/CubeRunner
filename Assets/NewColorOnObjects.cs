@@ -5,11 +5,31 @@ using UnityEngine;
 public class NewColorOnObjects : MonoBehaviour
 {
     [SerializeField] Color32 _color;
-    private void OnValidate()
+
+    [Header("RandomColor")]
+    [SerializeField] bool _randomColor;
+    private void Start()
     {
-        var renderer = this.GetComponent<Renderer>();
+        this.GetComponent<Renderer>().material.color = _color;
+        if (_randomColor)
+        {
+            UpdateColor();
+        }
+    }
+/*    private void OnValidate()
+    {
+        var renderer = this.GetComponent<MeshRenderer>();
         var tempMaterial = new Material(renderer.sharedMaterial);
         tempMaterial.color = _color;
-        renderer.sharedMaterial = tempMaterial;
+        renderer.material = tempMaterial;
+    }*/
+    private byte FormatColor()
+    {
+        var randColorByte = System.Convert.ToByte(Random.Range(0, 255));
+        return randColorByte;
+    }
+    private void UpdateColor()
+    {
+        this.GetComponent<Renderer>().material.color = new Color32(FormatColor(), FormatColor(), FormatColor(), 255);
     }
 }

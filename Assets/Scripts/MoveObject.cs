@@ -15,7 +15,7 @@ public class MoveObject : MonoBehaviour
     {
         this.gameObject.transform.Translate(DirectionForTranslate());
     }
-    void Update()
+    void FixedUpdate()
     {
         Move();
     }
