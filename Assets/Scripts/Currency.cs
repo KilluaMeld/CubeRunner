@@ -5,23 +5,28 @@ using ConvertsDigits;
 public class Currency : MonoBehaviour
 {
     public double Value;
-    public TextMeshProUGUI[] ValueTMP;
     public delegate void ValueChange();
     public ValueChange ValueChanged;
-    private void Start()
-    {
-        ValueChanged = UpdateValueTexts;
-    }
     public void AddValue(double value)
     {
         Value += value;
-        ValueChanged();
+        ValueChanged?.Invoke();
     }
-    private void UpdateValueTexts()
+    public void MinusValue(double value)
     {
-        foreach (var tmp in ValueTMP)
+        if (Value >= value)
         {
-            tmp.text = Converter.FormatNum(Value);
+            Value -= value;
+            ValueChanged?.Invoke();
         }
+        else
+        {
+            Debug.Log("No currency");
+        }
+    }
+
+    public void ChangeCost(double value)
+    {
+        ValueChanged?.Invoke();
     }
 }

@@ -7,9 +7,17 @@ public class ActionsWithWindows : MonoBehaviour
     [SerializeField] GameObject[] _windowsForClose;
     [SerializeField] GameObject[] _windowsForOpen;
 
+    public void SetWindows(GameObject[] windowsForClose, GameObject[] windowsForOpen)
+    {
+        _windowsForClose = windowsForClose;
+        _windowsForOpen = windowsForOpen;
+    }
+    public void DestroyThisObject()
+    {
+        Destroy(this.gameObject);
+    }
     public void Action()
     {
-        Debug.Log("click");
         foreach (var item in _windowsForClose)
         {
             item.SetActive(false);

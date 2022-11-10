@@ -8,21 +8,13 @@ public class NewColorOnObjects : MonoBehaviour
 
     [Header("RandomColor")]
     [SerializeField] bool _randomColor;
-    private void Start()
-    {
-        this.GetComponent<Renderer>().material.color = _color;
-        if (_randomColor)
-        {
-            UpdateColor();
-        }
-    }
-/*    private void OnValidate()
+    private void OnValidate()
     {
         var renderer = this.GetComponent<MeshRenderer>();
         var tempMaterial = new Material(renderer.sharedMaterial);
         tempMaterial.color = _color;
         renderer.material = tempMaterial;
-    }*/
+    }
     private byte FormatColor()
     {
         var randColorByte = System.Convert.ToByte(Random.Range(0, 255));

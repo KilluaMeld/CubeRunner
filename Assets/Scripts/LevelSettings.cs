@@ -16,7 +16,6 @@ public class LevelSettings : MonoBehaviour
         if (_level <= GameSettings.instance.CurrentLevel)
         {
             GameSettings.instance.ChooseLevel = _level;
-            this.GetComponent<ActionsWithWindows>().Action();
         }
     }
     public void UpdateViewAboutLevel()
